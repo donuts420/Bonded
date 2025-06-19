@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Profile - Bonded</title>
+    <link rel="stylesheet" href="../public/styles/homepage.css" />
+    <link rel="stylesheet" href="../public/styles/profile.css" />
+  </head>
+  <body>
+
+    <div className="topbar">
+      <button
+        id="menu-btn"
+        className="menu"
+        aria-label="Toggle sidebar"
+        type="button"
+      >
+        <img src="../public/assets/Menu.png" alt="menu" />
+      </button>
+      <div className="hands">
+        <Link href="/">
+          <img src="../public/assets/hands_holding.png" alt="hands_holding" />
+        </Link>
+      </div>
+      <Link href="/">
+        <img src="../public/assets/logo.svg" alt="Logo" />
+      </Link>
+      <div className="search">
+        <input type="text" placeholder="Search" />
+      </div>
+      <div className="settings">
+        <button className="topbar-btn">
+          <img src="../public/assets/Settings.png" alt="settings_logo" />
+          <span className="topbar-label">Settings</span>
+        </button>
+        <button className="topbar-btn">
+          <img src="../public/assets/Profile.png" alt="profile_logo" />
+          <span className="topbar-label">Profile</span>
+        </button>
+      </div>
+    </div>
+
+
+    <main className="linkedin-profile-main">
+      <section className="linkedin-profile-header">
+        <div className="linkedin-profile-banner" />
+        <div className="linkedin-profile-photo">
+          <img src="../public/assets/Profile.png" alt="My Photo" />
+        </div>
+        <div className="linkedin-profile-info">
+          <h1 className="linkedin-profile-name">Sushma Rao</h1>
+          <p className="linkedin-profile-title">Retired Teacher</p>
+          <p className="linkedin-profile-location">Bengaluru, India</p>
+          <div className="linkedin-profile-details">
+            <span>Age: 72</span>
+            <span>DOB: 12 March 1952</span>
+          </div>
+          <p className="linkedin-profile-bio">
+            Passionate about gardening, reading, and spending time with my grandchildren.
+            I love sharing stories and wisdom with my community.
+          </p>
+          <div className="linkedin-profile-actions">
+            <button className="linkedin-btn connect">Connect</button>
+            <button className="linkedin-btn message">Message</button>
+          </div>
+        </div>
+      </section>
+
+      <section className="linkedin-profile-content">
+        <aside className="linkedin-profile-sidebar">
+          <div className="linkedin-profile-card">
+            <h2>About</h2>
+            <p>
+              I am a lifelong learner and enjoy helping others grow.
+              I volunteer at the local library and community garden.
+            </p>
+          </div>
+          <div className="linkedin-profile-card">
+            <h2>Skills</h2>
+            <ul>
+              <li>Mentoring</li>
+              <li>Storytelling</li>
+              <li>Gardening</li>
+              <li>Community Service</li>
+            </ul>
+          </div>
+        </aside>
+        <section className="linkedin-profile-posts">
+          <h2>Posts</h2>
+          <div className="linkedin-profile-post">
+            <div className="linkedin-profile-post-date">2 days ago</div>
+            <div className="linkedin-profile-post-content">
+              Had a wonderful afternoon gardening and teaching my granddaughter about plants!
+            </div>
+          </div>
+          <div className="linkedin-profile-post">
+            <div className="linkedin-profile-post-date">1 week ago</div>
+            <div className="linkedin-profile-post-content">
+              Finished reading a new book. Looking forward to discussing it at the community club.
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

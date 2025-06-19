@@ -9,7 +9,11 @@ export default function Connect() {
         <title>Bonded Connect</title>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/styles/style.css" />
+        <meta
+          name="description"
+          content="Bonded Connect - Meet new people, exchange stories, and build meaningful connections."
+        />
+        <link rel="stylesheet" href="/styles/connect.css" />
         <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
           rel="stylesheet"
@@ -82,15 +86,9 @@ export default function Connect() {
         </Link>
       </div>
 
-      {/* Title */}
-      <div className="px-4 py-5 my-5 text-center">
-        <img
-          className="d-block mx-auto mb-4"
-          src="/assets/brand_logo_final.png"
-          alt=""
-          height="200"
-        />
-        <h1 className="display-5 fw-bold text-body-emphasis">
+      {/* Title Section */}
+      <div className="relative px-4 py-5 my-5 text-center mt-[300px]">
+        <h1 className="relative display-5 fw-bold text-body-emphasis">
           Bringing People Together, Made Simple.
         </h1>
         <div className="col-lg-6 mx-auto">
@@ -105,13 +103,14 @@ export default function Connect() {
         </div>
       </div>
 
+      {/* Cards Section */}
       <div className="card-holder px-4 py-5 my-5 d-flex gap-4 flex-wrap justify-content-center">
         {/* Card 1 */}
         <div className="card" style={{ width: "18rem" }}>
           <img
-            src="/assets/my_spirit_animal.jpeg"
+            src="/assets/spirit_animal.jpeg"
             className="card-img-top"
-            alt="old woman"
+            alt="spirit animal"
           />
           <div className="card-body">
             <h5 className="card-title">Alex Johnson</h5>
@@ -129,7 +128,11 @@ export default function Connect() {
 
         {/* Card 2 */}
         <div className="card" style={{ width: "18rem" }}>
-          <img src="/assets/jpeg.jpeg" className="card-img-top" alt="old man" />
+          <img
+            src="/assets/cosplay.jpg"
+            className="card-img-top"
+            alt="cosplay"
+          />
           <div className="card-body">
             <h5 className="card-title">Priya Sharma</h5>
             <p className="card-text">
@@ -147,7 +150,7 @@ export default function Connect() {
         {/* Card 3 */}
         <div className="card" style={{ width: "18rem" }}>
           <img
-            src="/assets/people_in_nineties.jpeg"
+            src="/assets/birthday_pic.jpeg"
             className="card-img-top"
             alt="old man"
           />
