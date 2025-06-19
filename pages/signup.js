@@ -1,8 +1,102 @@
 import Head from 'next/head';
-import Script from 'next/script';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 export default function Signup() {
+  const [firebaseApp, setFirebaseApp] = useState(null);
+
+  useEffect(() => {
+    const loadFirebase = async () => {
+      const firebase = (await import('firebase/compat/app')).default;
+      await import('firebase/compat/auth');
+      await import('firebase/compat/firestore');
+
+      const firebaseConfig = {
+        apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+        authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+        storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+        messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+        appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+        measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+      };
+
+      if (firebase.apps.length === 0) {
+        firebase.initializeApp(firebaseConfig);
+      }
+
+      setFirebaseApp(firebase);
+    };
+
+    loadFirebase();
+  }, []);
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+
+    if (!firebaseApp) {
+      alert('Firebase is still loading...');
+      return;
+    }
+
+    const auth = firebaseApp.auth();
+    const db = firebaseApp.firestore();
+
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirm-password").value;
+    const fileInput = document.getElementById("id-upload");
+    const file = fileInput.files[0];
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    if (!file) {
+      alert("Please upload an ID image.");
+      return;
+    }
+
+    try {
+      const userCredential = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = async function () {
+        const imageBase64 = reader.result;
+
+        await db.collection("users").doc(user.uid).set({
+          username: username,
+          email: email,
+          image: imageBase64,
+        });
+
+        await user.updateProfile({
+          displayName: username,
+        });
+
+        alert("Account created successfully!");
+
+        window.location.href = "/login";
+      };
+
+      reader.onerror = function (error) {
+        console.error("Image read error:", error);
+        alert("Image read failed.");
+      };
+    } catch (error) {
+      console.error("Signup Error:", error.code, error.message);
+      alert("Signup failed: " + error.message);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -12,20 +106,6 @@ export default function Signup() {
         <link rel="stylesheet" href="/styles/signup.css" />
       </Head>
 
-      {/* Firebase SDK */}
-      <Script
-        src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"
-        strategy="beforeInteractive"
-      />
-      <Script
-        src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"
-        strategy="beforeInteractive"
-      />
-      <Script
-        src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"
-        strategy="beforeInteractive"
-      />
-
       <div className="login-container">
         <img
           src="/assets/icons/logo.svg"
@@ -33,7 +113,7 @@ export default function Signup() {
           className="login-logo"
         />
         <div className="login-title">Sign Up</div>
-        <form id="signup-form" className="login-form">
+        <form id="signup-form" className="login-form" onSubmit={handleSignup}>
           <input type="text" id="username" placeholder="Username" required />
           <input type="email" id="email" placeholder="Email" required />
           <input type="password" id="password" placeholder="Password" required />
@@ -56,19 +136,10 @@ export default function Signup() {
           </label>
           <div className="file-upload-wrapper">
             <input type="file" id="id-upload" accept="image/*" required />
-            <button
-              type="button"
-              className="file-remove-btn"
-              id="removeFileBtn"
-              aria-label="Remove file"
-              style={{ display: 'none' }}
-            >
-              &#10005;
-            </button>
           </div>
 
-          <button className="login-btn" type="submit">
-            Create Account
+          <button className="login-btn" type="submit" disabled={!firebaseApp}>
+            {firebaseApp ? "Create Account" : "Loading Firebase..."}
           </button>
         </form>
 
@@ -76,9 +147,6 @@ export default function Signup() {
           <Link href="/login">Already have an account?</Link>
         </div>
       </div>
-
-      {/* Signup logic */}
-      <Script src="/scripts/signup.js" strategy="afterInteractive" />
     </>
   );
 }
