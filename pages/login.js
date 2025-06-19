@@ -7,7 +7,7 @@ export default function Login() {
 
   useEffect(() => {
     const loadFirebase = async () => {
-      const firebase = await import('firebase/compat/app');
+      const firebase = (await import('firebase/compat/app')).default;
       await import('firebase/compat/auth');
 
       const firebaseConfig = {
@@ -20,7 +20,8 @@ export default function Login() {
         measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
       };
 
-      if (!firebase.apps.length) {
+      // This is the correct way to check if already initialized
+      if (firebase.apps && firebase.apps.length === 0) {
         firebase.initializeApp(firebaseConfig);
       }
 
@@ -42,7 +43,7 @@ export default function Login() {
     try {
       await auth.signInWithEmailAndPassword(email, password);
       alert("Login successful!");
-      window.location.href = "/";
+      window.location.href = "/homepage";
     } catch (error) {
       console.error("Login Error:", error.code, error.message);
       alert("Login failed: " + error.message);
