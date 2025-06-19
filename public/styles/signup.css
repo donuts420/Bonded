@@ -1,0 +1,182 @@
+body {
+  background: #213448;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Platypi";
+}
+
+.login-container {
+  background: #f7ecd7;
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  padding: 48px 36px 36px 36px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-logo {
+  width: 120px;
+  margin-bottom: 24px;
+}
+
+.login-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #213448;
+  margin-bottom: 24px;
+}
+
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: none;
+  background: #fff;
+  font-size: 1rem;
+  outline: none;
+  font-family: "Platypi";
+}
+
+.login-form input::placeholder {
+  color: #b0a99f;
+  font-weight: 300;
+}
+
+.login-btn {
+  margin-top: 12px;
+  padding: 12px 0;
+  background: #213448;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: "Platypi";
+}
+
+.login-btn:hover {
+  background: #162230;
+}
+
+.login-links {
+  margin-top: 18px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.95rem;
+}
+
+.login-links a {
+  color: #213448;
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+}
+
+.login-links a:hover {
+  text-decoration: underline;
+}
+
+/* File input styling */
+.login-form label[for="id-upload"] {
+  color: #213448;
+  font-size: 1rem;
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+
+input[type="file"] {
+  margin-top: 6px;
+  font-family: "Platypi";
+  background: #fff;
+  border-radius: 8px;
+  border: none;
+  padding: 8px 0;
+  color: #213448;
+  font-size: 1rem;
+  margin-left: 8px;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  background: #213448;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: "Platypi";
+  font-weight: 600;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+input[type="file"]::file-selector-button {
+  background: #213448;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: "Platypi";
+  font-weight: 600;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover,
+input[type="file"]::file-selector-button:hover {
+  background: #162230;
+}
+
+input[type="file"]::-ms-value {
+  margin-left: 8px;
+}
+
+input[type="file"]::-webkit-file-upload-text {
+  margin-left: 8px;
+}
+
+input[type="file"]::file-selector-text {
+  margin-left: 8px;
+}
+
+.file-upload-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.file-remove-btn {
+  background: #213448;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 1.2rem;
+  font-family: "Platypi";
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.file-remove-btn:hover {
+  background: #162230;
+}

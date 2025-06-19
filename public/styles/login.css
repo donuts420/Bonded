@@ -1,0 +1,77 @@
+body {
+  background: #213448;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Platypi";
+}
+.login-container {
+  background: #f7ecd7;
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  padding: 48px 36px 36px 36px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-logo {
+  width: 120px;
+  margin-bottom: 24px;
+}
+.login-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #213448;
+  margin-bottom: 24px;
+}
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.login-form input {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: none;
+  background: #fff;
+  font-size: 1rem;
+  outline: none;
+  font-family: "Platypi";
+}
+.login-form input::placeholder {
+  color: #b0a99f;
+  font-weight: 300;
+}
+.login-btn {
+  margin-top: 12px;
+  padding: 12px 0;
+  background: #213448;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.login-btn:hover {
+  background: #162230;
+}
+.login-links {
+  margin-top: 18px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+}
+.login-links a {
+  color: #213448;
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+}
+.login-links a:hover {
+  text-decoration: underline;
+}
