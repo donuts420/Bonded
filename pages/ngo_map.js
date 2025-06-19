@@ -1,23 +1,24 @@
 import Head from 'next/head';
 import Script from 'next/script';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function NgoMap() {
-  useEffect(() => {
-    // Wait until Leaflet is loaded
-    if (typeof L !== 'undefined') {
-      const map = L.map('map').setView([28.6139, 77.2090], 12); // Delhi
+  const [leafletReady, setLeafletReady] = useState(false);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  useEffect(() => {
+    if (leafletReady && typeof window.L !== 'undefined') {
+      const map = window.L.map('map').setView([28.6139, 77.2090], 12); // Delhi
+
+      window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
       }).addTo(map);
 
-      L.marker([28.6139, 77.2090])
+      window.L.marker([28.6139, 77.2090])
         .addTo(map)
         .bindPopup('NGO Location')
         .openPopup();
     }
-  }, []);
+  }, [leafletReady]);
 
   return (
     <>
@@ -25,16 +26,30 @@ export default function NgoMap() {
         <title>Find NGOs Near Me</title>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        />
       </Head>
+
+      {/* Load Leaflet CSS properly */}
+      <Script
+        id="leaflet-css"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css';
+            document.head.appendChild(link);
+          `,
+        }}
+      />
 
       {/* Load Leaflet JS */}
       <Script
         src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         strategy="afterInteractive"
+        onLoad={() => {
+          console.log('Leaflet loaded');
+          setLeafletReady(true);
+        }}
       />
 
       {/* Map */}
@@ -46,7 +61,13 @@ export default function NgoMap() {
           position: 'relative',
           zIndex: 0,
         }}
-      ></div>
+      >
+        {!leafletReady && (
+          <p style={{ textAlign: 'center', paddingTop: '20px' }}>
+            Loading map...
+          </p>
+        )}
+      </div>
     </>
   );
 }
