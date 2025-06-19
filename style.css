@@ -4,7 +4,7 @@ body {
 }
 
 .topbar {
-  background: #193f31;
+  background: #213448;
   width: 100vw;
   position: fixed;
   top: 0;
@@ -19,7 +19,13 @@ body {
   display: flex;
   align-items: center;
   position: relative;
-  margin-left: 120px;
+  margin-left: 200px;
+}
+
+.menu img {
+  margin-left: 35px;
+  height: 40px;
+  width: 40px;
 }
 
 .logo img {
@@ -27,6 +33,15 @@ body {
   height: auto;
   padding: 25px 0;
   display: block;
+  margin-left: 70px;
+}
+
+.hands img {
+  width: 100px;
+  height: auto;
+  position: absolute;
+  top: 10px;
+  margin-left: 160px;
 }
 
 .search {
@@ -36,7 +51,7 @@ body {
   border-radius: 45px;
   display: flex;
   align-items: center;
-  margin-left: 80px;
+  margin-left: 250px;
   padding: 0 20px;
 }
 
@@ -54,8 +69,9 @@ body {
   font-weight: 300;
 }
 
-.sidebar {
-  background: #193f31;
+/* to be used after adding a button */
+/* .sidebar {
+  background: #213448;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -64,4 +80,4 @@ body {
   top: 120px;
   left: 0;
   padding-top: 20px;
-}
+} */
